@@ -1,3 +1,4 @@
+/* Réinitialisation des marges, des rembourrages et de la taille de la boîte pour tous les éléments */
 * {
     margin: 0;
     padding: 0;
@@ -6,212 +7,232 @@
     -moz-box-sizing: border-box;
 }
 
+/* Définition du style de base pour le corps de la page */
 body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    color: #333;
-    background: linear-gradient(to right, #467fcf, #2953bc);
-    min-height: 100vh;
+    font-family: Arial, sans-serif; /* Définition de la police de caractères */
+    line-height: 1.6; /* Définition de la hauteur de ligne */
+    color: #333; /* Définition de la couleur du texte */
+    background: linear-gradient(to right, #467fcf, #2953bc); /* Définition du dégradé de couleur en arrière-plan */
+    min-height: 100vh; /* Définition de la hauteur minimale de la page à 100% de la hauteur de la fenêtre de visualisation */
 }
 
+/* Définition du style pour tous les liens */
 a {
-    text-decoration: none;
-    color: black;
+    text-decoration: none; /* Suppression du soulignement des liens */
+    color: black; /* Définition de la couleur des liens en noir */
 }
 
+/* Définition du style pour la barre de navigation */
 nav {
-    background: linear-gradient(to bottom, #ffffff, #f2f2f2);
-    color: black;
-    font-weight: bold;
-    font-size: 18px;
-    height: 100px;
-    padding: 5px;
+    background: linear-gradient(to bottom, #ffffff, #f2f2f2); /* Définition du dégradé de couleur en arrière-plan */
+    color: black; /* Définition de la couleur du texte en noir */
+    font-weight: bold; /* Définition de l'épaisseur de la police de caractères */
+    font-size: 18px; /* Définition de la taille de la police de caractères */
+    height: 100px; /* Définition de la hauteur de la barre de navigation */
+    padding: 5px; /* Définition du rembourrage autour du contenu de la barre de navigation */
 }
 
+/* Définition du style pour le premier niveau de la liste de navigation */
 nav #first_ul {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    list-style-type: none;
-    align-items: center;
+    display: flex; /* Utilisation d'un conteneur flexible pour le layout */
+    flex-direction: row; /* Orientation des éléments de la liste horizontalement */
+    justify-content: space-around; /* Répartition égale de l'espace autour des éléments */
+    list-style-type: none; /* Suppression des puces de la liste */
+    align-items: center; /* Centrage vertical des éléments de la liste */
 }
 
+/* Définition du style pour le second niveau de la liste de navigation */
 nav #second_ul {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    list-style-type: none;
+    display: flex; /* Utilisation d'un conteneur flexible pour le layout */
+    flex-direction: row; /* Orientation des éléments de la liste horizontalement */
+    align-items: center; /* Centrage vertical des éléments de la liste */
+    list-style-type: none; /* Suppression des puces de la liste */
+}
+
+/* Définition du style pour les éléments avec la classe .botAnim */
+.botAnim {
+    margin: 0px 30px; /* Ajout de marges horizontales */
 }
 
 .botAnim {
-    margin: 0px 30px;
+    cursor: pointer; /* Changement du curseur en forme de main lors du survol */
+    transition: all 0.5s ease; /* Ajout d'une transition douce pour tous les changements de propriétés */
+    position: relative; /* Positionnement relatif pour permettre le positionnement absolu des éléments enfants */
+    overflow: hidden; /* Masquage du contenu débordant */
 }
 
-.botAnim {
-    cursor: pointer;
-    transition: all 0.5s ease;
-    position: relative;
-    overflow: hidden;
-}
-
+/* Définition du style pour le pseudo-élément ::before des éléments avec la classe .botAnim */
 .botAnim::before {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 0;
-    height: 2px;
-    background: black;
-    transition: 0.2s ease-in-out;
-    transform: translateX(-50%);
+    content: ""; /* Ajout d'un contenu vide */
+    position: absolute; /* Positionnement absolu par rapport à l'élément parent */
+    bottom: 0; /* Positionnement en bas de l'élément parent */
+    left: 50%; /* Positionnement à mi-chemin de la largeur de l'élément parent */
+    width: 0; /* Largeur initiale de 0 */
+    height: 2px; /* Hauteur de la ligne */
+    background: black; /* Couleur de fond de la ligne */
+    transition: 0.2s ease-in-out; /* Ajout d'une transition douce pour les changements de propriétés */
+    transform: translateX(-50%); /* Décalage de la position initiale de -50% de la largeur de l'élément */
 }
 
+/* Définition du style pour le pseudo-élément ::before des éléments avec la classe .botAnim lors du survol */
 .botAnim:hover::before {
-    width: 100%;
+    width: 100%; /* Changement de la largeur à 100% lors du survol */
 }
 
 /* Nav media queries */
 
+/* Media Query pour les écrans de largeur maximale de 655px */
 @media screen and (max-width: 655px) {
+    /* Styles pour la balise nav */
     nav {
-        font-size: 18px;
-        height: 200px;
+        font-size: 18px; /* Taille de police de la navigation */
+        height: 200px; /* Hauteur fixe de la navigation */
     }
 
+    /* Styles pour l'élément #first_ul à l'intérieur de nav */
     nav #first_ul {
-        flex-direction: column;
-        gap: 20px;
+        flex-direction: column; /* Disposition en colonne des éléments enfants */
+        gap: 20px; /* Espacement entre les éléments enfants */
     }
 }
 
+/* Styles pour l'élément avec l'ID 'emd' */
 #emd {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    display: flex; /* Affichage en tant que conteneur flexible */
+    flex-direction: column; /* Disposition en colonne des éléments enfants */
+    justify-content: center; /* Centrage vertical des éléments enfants */
+    align-items: center; /* Centrage horizontal des éléments enfants */
 }
 
+/* Styles pour la balise span à l'intérieur de l'élément #emd */
 #emd span {
-    font-size: 10px;
+    font-size: 10px; /* Taille de police pour la balise span */
 }
 
+/* Styles pour la balise section */
 section {
-    min-height: calc(100vh - 140px);
-    padding: 10px;
+    min-height: calc(100vh - 140px); /* Hauteur minimale calculée en fonction de la hauteur de la vue */
+    padding: 10px; /* Espacement intérieur de la section */
 }
 
-    footer {
-        height: 40px;
-        background-color: #444343;
-        text-align: center;
-        display: block;
-        color: white;
-        position: relative;
-        bottom: 0;
-    }
+/* Styles pour la balise footer */
+footer {
+    height: 40px; /* Hauteur fixe du pied de page */
+    background-color: #444343; /* Couleur de fond du pied de page */
+    text-align: center; /* Centrage du texte dans le pied de page */
+    display: block; /* Affichage en tant que bloc */
+    color: white; /* Couleur du texte */
+    position: relative; /* Position relative par rapport à son emplacement normal */
+    bottom: 0; /* Alignement en bas de son conteneur parent */
+}
+
 
 
 /******************************************/
 /* Tableau display */
 /******************************************/
 
-.table-wrapper{
-    display: flex;
-    margin-top: 20px;
-    justify-content: center;
+/* Styles pour la classe table-wrapper */
+.table-wrapper {
+    display: flex; /* Affichage en tant que conteneur flexible */
+    margin-top: 20px; /* Marge supérieure de 20px */
+    justify-content: center; /* Centrage horizontal des éléments enfants */
 }
 
+/* Styles pour la classe fl-table */
 .fl-table {
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: normal;
-    border: none;
-    border-collapse: collapse;
-    width: 70%;
-    max-width: 100%;
-    white-space: nowrap;
-    background-color: white;
+    border-radius: 5px; /* Bordure arrondie */
+    font-size: 16px; /* Taille de police */
+    font-weight: normal; /* Poids de la police normal */
+    border: none; /* Pas de bordure */
+    border-collapse: collapse; /* Fusion des bordures de tableau */
+    width: 70%; /* Largeur du tableau */
+    max-width: 100%; /* Largeur maximale du tableau */
+    white-space: nowrap; /* Pas de retour à la ligne */
+    background-color: white; /* Couleur de fond blanche */
 }
 
+/* Styles pour les cellules et les en-têtes du tableau */
 .fl-table td, .fl-table th {
-    text-align: center;
-    padding: 8px;
+    text-align: center; /* Centrage du texte */
+    padding: 8px; /* Espacement intérieur */
 }
 
 .fl-table td {
-    border-right: 1px solid #f8f8f8;
-    font-size: 16px;
+    border-right: 1px solid #f8f8f8; /* Bordure droite pour les cellules du tableau */
+    font-size: 16px; /* Taille de police pour les cellules du tableau */
 }
 
+/* Styles pour les en-têtes du tableau */
 .fl-table thead th {
-    color: #ffffff;
-    background: #4FC3A1;
+    color: #ffffff; /* Couleur du texte blanc */
+    background: #4FC3A1; /* Fond vert bleuâtre */
 }
 
-
+/* Styles pour les en-têtes impaires du tableau */
 .fl-table thead th:nth-child(odd) {
-    color: #ffffff;
-    background: #324960;
+    color: #ffffff; /* Couleur du texte blanc */
+    background: #324960; /* Fond bleu foncé */
 }
 
+/* Styles pour les lignes paires du tableau */
 .fl-table tr:nth-child(even) {
-    background: #F8F8F8;
+    background: #F8F8F8; /* Fond gris clair */
 }
 
-/* Responsive */
-
+/* Styles responsives */
 @media (max-width: 812px) {
     .fl-table {
-        display: block;
-        width: 100%;
+        display: block; /* Affichage en tant que bloc */
+        width: 100%; /* Largeur du tableau de 100% */
     }
     .fl-table thead, .fl-table tbody, .fl-table thead th {
-        display: block;
+        display: block; /* Affichage en tant que bloc pour les éléments du tableau */
     }
-    .fl-table thead th:last-child{
-        border-bottom: none;
+    .fl-table thead th:last-child {
+        border-bottom: none; /* Pas de bordure inférieure pour le dernier en-tête */
     }
     .fl-table thead {
-        float: left;
+        float: left; /* Alignement à gauche pour les en-têtes */
     }
     .fl-table tbody {
-        width: auto;
-        position: relative;
-        overflow-x: auto;
+        width: auto; /* Largeur automatique */
+        position: relative; /* Position relative par rapport à son emplacement normal */
+        overflow-x: auto; /* Défilement horizontal automatique en cas de dépassement */
     }
     .fl-table td, .fl-table th {
-        padding: 20px .625em .625em .625em;
-        height: 60px;
-        vertical-align: middle;
-        box-sizing: border-box;
-        overflow-x: hidden;
-        overflow-y: auto;
-        width: 120px;
-        font-size: 13px;
-        text-overflow: ellipsis;
+        padding: 20px .625em .625em .625em; /* Espacement intérieur avec plus de marge */
+        height: 60px; /* Hauteur de cellule augmentée */
+        vertical-align: middle; /* Alignement vertical au milieu */
+        box-sizing: border-box; /* Modèle de boîte incluant la bordure */
+        overflow-x: hidden; /* Pas de défilement horizontal */
+        overflow-y: auto; /* Défilement vertical automatique en cas de dépassement */
+        width: 120px; /* Largeur de cellule fixe */
+        font-size: 13px; /* Taille de police réduite */
+        text-overflow: ellipsis; /* Texte coupé avec des points de suspension en cas de dépassement */
     }
     .fl-table thead th {
-        text-align: left;
-        border-bottom: 1px solid #f7f7f9;
+        text-align: left; /* Alignement du texte à gauche pour les en-têtes */
+        border-bottom: 1px solid #f7f7f9; /* Bordure inférieure pour les en-têtes */
     }
     .fl-table tbody tr {
-        display: table-cell;
+        display: table-cell; /* Affichage en tant que cellule de tableau */
     }
     .fl-table tbody tr:nth-child(odd) {
-        background: none;
+        background: none; /* Pas de fond pour les lignes impaires */
     }
     .fl-table tr:nth-child(even) {
-        background: transparent;
+        background: transparent; /* Fond transparent pour les lignes paires */
     }
     .fl-table tr td:nth-child(odd) {
-        background: #F8F8F8;
-        border-right: 1px solid #E6E4E4;
+        background: #F8F8F8; /* Fond gris clair pour les cellules impaires */
+        border-right: 1px solid #E6E4E4; /* Bordure droite pour les cellules impaires */
     }
     .fl-table tr td:nth-child(even) {
-        border-right: 1px solid #E6E4E4;
+        border-right: 1px solid #E6E4E4; /* Bordure droite pour les cellules paires */
     }
     .fl-table tbody td {
-        display: block;
-        text-align: center;
+        display: block; /* Affichage en tant que bloc pour les cellules du corps du tableau */
+        text-align: center; /* Alignement du texte au centre pour les cellules du corps du tableau */
     }
 }
