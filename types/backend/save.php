@@ -18,6 +18,9 @@ if (isset($_POST['sauvegardeFichier']) && $_FILES['file']) {
     $fileName = $file['name'];
     $fileType = $file['type'];
 
+    //Recuperer le lien de la video
+    $video = $_POST['video'] ?? NULL;
+
     // Fonction pour obtenir l'extension à partir du type MIME
     function mimeToExtension($mimeType) {
         $mimeMap = [
@@ -29,9 +32,26 @@ if (isset($_POST['sauvegardeFichier']) && $_FILES['file']) {
             'image/jpeg' => 'jpg',
             'image/png' => 'png',
             'text/plain' => 'txt',
-            'text/html' => 'webp',
+            'text/html' => 'html',
             'application/vnd.ms-powerpoint' => 'ppt',
-            // Ajoutez d'autres types MIME et leurs extensions correspondantes ici
+            'application/vnd.openxmlformats-officedocument.presentationml.presentation' => 'pptx',
+            'application/zip' => 'zip',
+            'application/x-gzip' => 'gzip',
+            'audio/mpeg' => 'mp3',
+            'video/mp4' => 'mp4',
+            'application/json' => 'json',
+            'application/xml' => 'xml',
+            'application/xhtml+xml' => 'xhtml',
+            'application/javascript' => 'js',
+            'application/css' => 'css',
+            'application/x-shockwave-flash' => 'swf',
+            'image/gif' => 'gif',
+            'image/bmp' => 'bmp',
+            'application/x-tar' => 'tar',
+            'application/x-rar-compressed' => 'rar',
+            'application/x-7z-compressed' => '7z',
+            'application/x-msdownload' => 'exe',
+            'application/x-apple-diskimage' => 'dmg',
         ];
     
         return isset($mimeMap[$mimeType]) ? $mimeMap[$mimeType] : null;
@@ -52,12 +72,13 @@ if (isset($_POST['sauvegardeFichier']) && $_FILES['file']) {
 
     try {
         // Préparation et exécution de la requête d'insertion
-        $stmt = $pdo->prepare("INSERT INTO FILES(filename, section, type, date, data) VALUES(?, ?, ?, ?, ?)");
+        $stmt = $pdo->prepare("INSERT INTO FILES(filename, section, type, date, video, data) VALUES(?, ?, ?, ?, ?, ?)");
         $stmt->bindParam(1, $fileName);
         $stmt->bindParam(2, $section);
         $stmt->bindParam(3, $fileType);
         $stmt->bindParam(4, $actualDate);
-        $stmt->bindParam(5, $fileData, PDO::PARAM_LOB);
+        $stmt->bindParam(5, $video);
+        $stmt->bindParam(6, $fileData, PDO::PARAM_LOB);
 
         $stmt->execute();
     } catch(PDOException $e) {

@@ -87,6 +87,10 @@
         color: white; /* Couleur du texte blanc */
     }
 
+    #lien-video {
+        color: blue; /* Couleur bleu pour le lien */
+    }
+
 </style>
 <body>
     <?php include('nav.php'); ?>
@@ -97,6 +101,11 @@
         <div>
             <form action="backend/save.php" method="POST" enctype="multipart/form-data">
                 <input id="upload" type="file" name="file">
+                <div style="display: block;">
+                    <label style="color: white;" for="video">Lien de la video: </label>
+                    <input id="video" type="text" name="video" style="padding: 5px; margin: 5px 0px; border: 1px solid #ccc; border-radius: 4px; box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);">
+                </div>
+                
                 <button type="submit" name="sauvegardeFichier">Sauvegarder</button>
             </form>
         </div>
@@ -110,6 +119,7 @@
                         <th>Nom du fichier</th>
                         <th>Type de fichier</th>
                         <th>Date</th>
+                        <th>Video</th>
                         <th>Télécharger</th>
                         <th>Supprimer</th>
                     </tr>
@@ -144,19 +154,21 @@
                         $i = 1;
 
                         if ($totalItems == 0) {
-                            echo '<tr class="change"><td colspan="6">Aucun résultat</td></tr>';
+                            echo '<tr class="change"><td colspan="7">Aucun résultat</td></tr>';
                         }
 
                         if ($result) {
                             foreach ($result as $row) {
-                                echo '<tr class="change">
-                                        <td>' . $i . '</td>
-                                        <td>' . $row['filename'] . '</td>
-                                        <td>' . $row['type'] . '</td>
-                                        <td>' . $row['date'] . '</td>
-                                        <td><button type="submit" value="' . $row['id'] . '" class="telecharger">Télécharger</button></td>
-                                        <td><button type="submit" value="' . $row['id'] . '" class="supprimer">Supprimer</button></td>
-                                      </tr>';
+                                echo '
+                                <tr class="change">
+                                    <td>' . $i . '</td>
+                                    <td>' . $row['filename'] . '</td>
+                                    <td>' . $row['type'] . '</td>
+                                    <td>' . $row['date'] . '</td>
+                                    <td>' . ($row['video'] != NULL ? '<a target="_blank" id="lien-video" href="' . $row['video'] . '">Lien de la vidéo</a>' : "Aucune video") . '</td>
+                                    <td><button type="submit" value=" ' . $row['id'] . '" class="telecharger">Télécharger</button></td>
+                                    <td><button type="submit" value=" ' . $row['id'] . '" class="supprimer">Supprimer</button></td>
+                                    </tr>';
                                 $i++;
                             }
                         }
